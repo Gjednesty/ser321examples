@@ -3,6 +3,10 @@ apply plugin: 'application'
 
 //define main class
 mainClassName = 'SimpleServer'
+dependencies{
+  compile 'org.json:json:20171018' // org.json
+  compile 'com.google.code.gson:gson:2.8.6' // Google JSON
+}
 
 task SimpleWebServer(type: JavaExec) {
   group 'http'
