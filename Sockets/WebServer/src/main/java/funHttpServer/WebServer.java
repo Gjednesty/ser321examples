@@ -222,26 +222,41 @@ class WebServer {
 	          }
 
         } else if (request.contains("github?")) {
-          // pulls the query from the request and runs it with GitHub's REST API
-          // check out https://docs.github.com/rest/reference/
-          //
-          // HINT: REST is organized by nesting topics. Figure out the biggest one first,
-          //     then drill down to what you care about
-          // "Owner's repo is named RepoName. Example: find RepoName's contributors" translates to
-          //     "/repos/OWNERNAME/REPONAME/contributors"
-
+         try {
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           query_pairs = splitQuery(request.replace("github?", ""));
           String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
           System.out.println(json);
 
-          builder.append("Check the todos mentioned in the Java source file");
-          // TODO: Parse the JSON returned by your fetch and create an appropriate
-          // response
-          // and list the owner name, owner id and name of the public repo on your webpage, e.g.
-          // amehlhase, 46384989 -> memoranda
-          // amehlhase, 46384989 -> ser316examples
-          // amehlhase, 46384989 -> test316
+          builder.append("Check the todos mentioned in the Java source file"); 
+              // saving it as JSON array (if it sere not an array it woudl need to be a JSONObject)
+              JSONArray repoArray = new JSONArray(json);
+
+              // new JSON which we want to save later on
+              JSONArray newjSON = new JSONArray();
+
+              // go through all the entries in the JSON array (so all the repos of the user)
+              for(int i=0; i<repoArray.length(); i++){
+                 // now we have a JSON object, one repo 
+                 JSONObject repo = repoArray.getJSONObject(i);
+                 // get repo name
+                 String repoName = repo.getString("name");
+
+
+                 // create a new object for the repo we want to store add the repo name and owername to it
+
+ 
+	          builder.append("HTTP/1.1 200 OK\n");
+	          builder.append("Content-Type: text/html; charset=utf-8\n");
+	          builder.append("\n");
+	          builder.append(repoName);
+              }
+           }catch (Exception e) {
+		          builder.append("HTTP/1.1 400 Bad Request\n");
+		          builder.append("Content-Type: text/html; charset=utf-8\n");
+		          builder.append("\n");
+		          builder.append("Enter in format /github?query=users/amehlhase316/repos");  
+           }
 
         } else {
           // if the request is not recognized at all
