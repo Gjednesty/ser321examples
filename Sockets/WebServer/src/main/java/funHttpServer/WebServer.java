@@ -18,10 +18,7 @@ package funHttpServer;
 
 import java.io.*;
 import java.net.*;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONString;
+import org.json.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
