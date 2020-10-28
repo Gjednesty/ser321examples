@@ -218,7 +218,7 @@ class WebServer {
 		          builder.append("HTTP/1.1 400 Bad Request\n");
 		          builder.append("Content-Type: text/html; charset=utf-8\n");
 		          builder.append("\n");
-		          builder.append("400 Bad Request - Enter in format /multiply?num1=?num2=?");  
+		          builder.append("Enter in format /multiply?num1=?num2=?");  
 	          }
 
         } else if (request.contains("github?")) {
