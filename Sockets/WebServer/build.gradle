@@ -3,9 +3,7 @@ apply plugin: 'application'
 
 //define main class
 mainClassName = 'SimpleServer'
-dependencies{
-  compile 'org.json:json:20171018' // org.json
-}
+
 
 task SimpleWebServer(type: JavaExec) {
   group 'http'
