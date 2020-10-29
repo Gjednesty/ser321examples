@@ -223,7 +223,7 @@ class WebServer {
 	          }
 
         } else if (request.contains("github?")) {
-                    try {
+            try {
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           query_pairs = splitQuery(request.replace("github?", ""));
           String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
@@ -233,7 +233,7 @@ class WebServer {
               JSONArray newjSON = new JSONArray();
               String repoName = ""; 
               int id = 0;
-            //  String owner = "";
+              String owner = "";
 	          builder.append("HTTP/1.1 200 OK\n");
 	          builder.append("Content-Type: text/html; charset=utf-8\n");
 	          builder.append("\n");
@@ -244,11 +244,13 @@ class WebServer {
                  // get repo name
                  repoName = repo.getString("name");
                  id = repo.getInt("id");
-               //  owner = repo.getJSONObject("owner").getString("login");
-	          builder.append("repoName " + i + ":" + repoName);
+                 owner = repo.getJSONObject("owner").getString("login");
+	          builder.append("repoName" + i + ":" + repoName);
 	          builder.append("\n");
-	          builder.append("idNumber " + i + ":" + id);
-	         // builder.append("ownerName " + i + ":" + owner);
+	          builder.append("idNumber" + i + ":" + id);
+	          builder.append("\n");
+	          builder.append("ownerName " + i + ":" + owner);
+	          builder.append("\n");
               }
            }catch (Exception e) {
 		          builder.append("HTTP/1.1 400 Bad Request\n");
