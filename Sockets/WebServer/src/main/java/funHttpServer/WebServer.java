@@ -223,13 +223,6 @@ class WebServer {
 	          }
 
         } else if (request.contains("github?")) {
-          // pulls the query from the request and runs it with GitHub's REST API
-          // check out https://docs.github.com/rest/reference/
-          //
-          // HINT: REST is organized by nesting topics. Figure out the biggest one first,
-          //     then drill down to what you care about
-          // "Owner's repo is named RepoName. Example: find RepoName's contributors" translates to
-          //     "/repos/OWNERNAME/REPONAME/contributors"
             try {
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           query_pairs = splitQuery(request.replace("github?", ""));
@@ -239,7 +232,7 @@ class WebServer {
               // new JSON which we want to save later on
               JSONArray newjSON = new JSONArray();
               String repoName = ""; 
-              String id = "";
+           //   String id = "";
             //  String owner = "";
 	          builder.append("HTTP/1.1 200 OK\n");
 	          builder.append("Content-Type: text/html; charset=utf-8\n");
@@ -250,10 +243,10 @@ class WebServer {
                  JSONObject repo = repoArray.getJSONObject(i);
                  // get repo name
                  repoName = repo.getString("name");
-                 id = repo.getString("id");
+                // id = repo.getString("id");
                //  owner = repo.getJSONObject("owner").getString("login");
 	          builder.append("repoName " + i + ":" + repoName);
-	          builder.append("idNumber " + i + ":" + id);
+	        //  builder.append("idNumber " + i + ":" + id);
 	         // builder.append("ownerName " + i + ":" + owner);
               }
            }catch (Exception e) {
