@@ -235,7 +235,7 @@ class WebServer {
               int id = 0;
               String owner = "";
 	          builder.append("HTTP/1.1 200 OK\n");
-	          builder.append("Content-Type: text/html; charset=utf-8\n");
+	          builder.append("Content-Type: text/plain; charset=utf-8\n");
 	          builder.append("\n");
               // go through all the entries in the JSON array (so all the repos of the user)
               for(int i=0; i<repoArray.length(); i++){
