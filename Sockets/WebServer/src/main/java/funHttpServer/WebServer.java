@@ -223,7 +223,7 @@ class WebServer {
 	          }
 
         } else if (request.contains("github?")) {
-            try {
+                    try {
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           query_pairs = splitQuery(request.replace("github?", ""));
           String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
@@ -232,7 +232,7 @@ class WebServer {
               // new JSON which we want to save later on
               JSONArray newjSON = new JSONArray();
               String repoName = ""; 
-           //   String id = "";
+              String id = "";
             //  String owner = "";
 	          builder.append("HTTP/1.1 200 OK\n");
 	          builder.append("Content-Type: text/html; charset=utf-8\n");
@@ -243,10 +243,11 @@ class WebServer {
                  JSONObject repo = repoArray.getJSONObject(i);
                  // get repo name
                  repoName = repo.getString("name");
-                // id = repo.getString("id");
+                 id = repo.getString("id");
                //  owner = repo.getJSONObject("owner").getString("login");
 	          builder.append("repoName " + i + ":" + repoName);
-	        //  builder.append("idNumber " + i + ":" + id);
+	          builder.append("\n");
+	          builder.append("idNumber " + i + ":" + id);
 	         // builder.append("ownerName " + i + ":" + owner);
               }
            }catch (Exception e) {
