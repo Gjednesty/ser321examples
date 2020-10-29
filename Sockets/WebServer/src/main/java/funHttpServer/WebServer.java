@@ -232,7 +232,7 @@ class WebServer {
               // new JSON which we want to save later on
               JSONArray newjSON = new JSONArray();
               String repoName = ""; 
-              String id = "";
+              int id = 0;
             //  String owner = "";
 	          builder.append("HTTP/1.1 200 OK\n");
 	          builder.append("Content-Type: text/html; charset=utf-8\n");
@@ -243,7 +243,7 @@ class WebServer {
                  JSONObject repo = repoArray.getJSONObject(i);
                  // get repo name
                  repoName = repo.getString("name");
-                 id = repo.getString("id");
+                 id = repo.getInt("id");
                //  owner = repo.getJSONObject("owner").getString("login");
 	          builder.append("repoName " + i + ":" + repoName);
 	          builder.append("\n");
@@ -256,7 +256,6 @@ class WebServer {
 		          builder.append("\n");
 		          builder.append("Enter in format /github?query=users/amehlhase316/repos");  
            }
-
         } else {
           // if the request is not recognized at all
 
