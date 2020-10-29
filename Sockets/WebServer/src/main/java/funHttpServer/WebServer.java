@@ -245,12 +245,12 @@ class WebServer {
                  repoName = repo.getString("name");
                  id = repo.getInt("id");
                  owner = repo.getJSONObject("owner").getString("login");
-	          builder.append("repoName" + i + ":" + repoName);
-	          builder.append("\n");
-	          builder.append("idNumber" + i + ":" + id);
-	          builder.append("\n");
-	          builder.append("ownerName " + i + ":" + owner);
-	          builder.append("\n");
+	          builder.append("repoName" + i + ": " + repoName);
+	          builder.append("\\n");
+	          builder.append("idNumber" + i + ": " + id);
+	          builder.append("\\n");
+	          builder.append("ownerName" + i + ": " + owner);
+	          builder.append("\\n");
               }
            }catch (Exception e) {
 		          builder.append("HTTP/1.1 400 Bad Request\n");
