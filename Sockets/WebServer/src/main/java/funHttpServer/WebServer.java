@@ -240,7 +240,7 @@ class WebServer {
               JSONArray newjSON = new JSONArray();
               String repoName = ""; 
               String id = "";
-              String owner = "";
+            //  String owner = "";
 	          builder.append("HTTP/1.1 200 OK\n");
 	          builder.append("Content-Type: text/html; charset=utf-8\n");
 	          builder.append("\n");
@@ -251,10 +251,10 @@ class WebServer {
                  // get repo name
                  repoName = repo.getString("name");
                  id = repo.getString("id");
-                 owner = repo.getJSONObject("owner").getString("login");
+               //  owner = repo.getJSONObject("owner").getString("login");
 	          builder.append("repoName " + i + ":" + repoName);
 	          builder.append("idNumber " + i + ":" + id);
-	          builder.append("ownerName " + i + ":" + owner);
+	         // builder.append("ownerName " + i + ":" + owner);
               }
            }catch (Exception e) {
 		          builder.append("HTTP/1.1 400 Bad Request\n");
